@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.grass.hellorxjava2.mock.MockRxjava
 import io.reactivex.*
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
@@ -15,8 +16,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById<TextView>(R.id.start).setOnClickListener {
-            test()
-            test2()
+//            test()
+//            test2()
+            MockRxjava().test()
+
         }
     }
 
@@ -91,5 +94,38 @@ class MainActivity : AppCompatActivity() {
         }.subscribe {
             Log.i(TAG, "test2: $it")
         }
+    }
+
+
+    fun test3() {
+        Observable.create<Int> { emitter: ObservableEmitter<Int> ->
+            emitter.onNext(1)
+        }.subscribe {
+            Log.i(TAG, "test2: $it")
+        }
+
+        Observable.create(object : ObservableOnSubscribe<Int> {
+            override fun subscribe(emitter: ObservableEmitter<Int>) {
+                emitter.onNext(1)
+            }
+        })
+            .subscribe(object : Observer<Int> {
+                override fun onComplete() {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onSubscribe(d: Disposable) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onNext(t: Int) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onError(e: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
     }
 }
