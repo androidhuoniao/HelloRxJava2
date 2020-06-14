@@ -2,6 +2,8 @@ package com.grass.hellorxjava2.mock;
 
 import android.util.Log;
 
+import io.reactivex.functions.Function;
+
 public class MockRxjava {
     private static final String TAG = "MockRxjava";
 
@@ -10,6 +12,11 @@ public class MockRxjava {
             @Override
             public void subscribe(CreateEmitter emitter) {
                 emitter.onNext("grass");
+            }
+        }).map(new Function<String, String>() {
+            @Override
+            public String apply(String s) throws Exception {
+                return s +" : "+32;
             }
         }).subscribe(new Observer() {
             @Override
