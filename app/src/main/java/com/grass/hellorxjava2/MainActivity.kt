@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.grass.hellorxjava2.lift.HelloConcat
 import com.grass.hellorxjava2.mock.MockRxjava
 import io.reactivex.*
 import io.reactivex.disposables.Disposable
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 //            test()
 //            test2()
             MockRxjava().test()
-
+            HelloConcat().test()
         }
     }
 
